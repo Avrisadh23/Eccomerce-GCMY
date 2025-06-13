@@ -1,0 +1,78 @@
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Laravel
+/Frontend/vendor/
+/Frontend/node_modules/
+/Frontend/public/hot
+/Frontend/public/storage
+/Frontend/storage/*.key
+/Frontend/.env
+/Frontend/.env.backup
+/Frontend/.phpunit.result.cache
+/Frontend/Homestead.json
+/Frontend/Homestead.yaml
+/Frontend/npm-debug.log
+/Frontend/yarn-error.log
+/Frontend/.vite.hot
+
+# Database
+*.sqlite
+*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp

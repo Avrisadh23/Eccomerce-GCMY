@@ -1,0 +1,108 @@
+services:
+  # Product Service - Port 8001
+  product-service:
+    build:
+      context: ./API_Service/product_service
+      dockerfile: Dockerfile
+    container_name: product_service
+    ports:
+      - "8001:5001"
+    volumes:
+      - ./API_Service/product_service:/app
+      - product_data:/app/data
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///data/ecommerce.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ecommerce-network
+      - logistiq-network
+
+  # User Service - Port 8002
+  user-service:
+    build:
+      context: ./API_Service/user_service
+      dockerfile: Dockerfile
+    container_name: user_service
+    ports:
+      - "8002:5002"
+    volumes:
+      - ./API_Service/user_service:/app
+      - user_data:/app/data
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///data/users.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ecommerce-network
+      - logistiq-network
+
+  # Order Service - Port 8003
+  order-service:
+    build:
+      context: ./API_Service/order_service
+      dockerfile: Dockerfile
+    container_name: order_service
+    ports:
+      - "8003:5003"
+    volumes:
+      - ./API_Service/order_service:/app
+      - order_data:/app/data
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///data/orders.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ecommerce-network
+      - logistiq-network
+
+  # Shipping Service - Port 8004
+  shipping-service:
+    build:
+      context: ./API_Service/shipping_service
+      dockerfile: Dockerfile
+    container_name: shipping_service
+    ports:
+      - "8004:5004"
+    volumes:
+      - ./API_Service/shipping_service:/app
+      - shipping_data:/app/data
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///data/shipping.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5004/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ecommerce-network
+      - logistiq-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
+  logistiq-network:
+    external: true
+
+volumes:
+  product_data:
+    driver: local
+  user_data:
+    driver: local
+  order_data:
+    driver: local
+  shipping_data:
+    driver: local
