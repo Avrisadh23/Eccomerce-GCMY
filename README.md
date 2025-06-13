@@ -1,4 +1,4 @@
-# 🚀 E-Commerce Application - Setup Guide
+# 🚀 E-Commerce Application - GCMY - Documentation
 
 ## 📋 Overview
 
